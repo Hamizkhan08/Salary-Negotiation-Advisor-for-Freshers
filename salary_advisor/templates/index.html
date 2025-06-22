@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalaryPredict AI - Estimate Your Fresher Salary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="nav-logo">SalaryPredict<strong>AI</strong></a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="#prediction-form">Predict</a>
+                <a href="#offer-analyzer">Offer Analyzer</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Full-Screen Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Know Your Worth. Negotiate with Confidence.</h1>
+            <p>Our AI-powered tool predicts your potential starting salary based on your profile, helping you step into your career with clarity.</p>
+            <a href="#prediction-form" class="btn btn-primary">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Salary Prediction Form -->
+        <section id="prediction-form" class="form-section">
+            <div class="container">
+                <h2>Predict Your Salary</h2>
+                <form action="/predict" method="post" class="prediction-form-grid">
+                    <div class="form-group"><label for="tenth">10th Marks (%)</label><input type="number" id="tenth" name="tenth" step="0.01" required></div>
+                    <div class="form-group"><label for="twelfth">12th Marks (%)</label><input type="number" id="twelfth" name="twelfth" step="0.01" required></div>
+                    <div class="form-group"><label for="cgpa">College CGPA (out of 10)</label><input type="number" id="cgpa" name="cgpa" step="0.01" max="10" required></div>
+                    <div class="form-group"><label for="stream">Academic Stream</label><select id="stream" name="stream" required><option value="" disabled selected>Select your stream</option>{% for s in streams %}<option value="{{ s }}">{{ s }}</option>{% endfor %}</select></div>
+                    <div class="form-group"><label for="communication">Communication (1-5)</label><input type="number" id="communication" name="communication" min="1" max="5" required></div>
+                    <div class="form-group"><label for="gender">Gender</label><select id="gender" name="gender" required><option value="1">Male</option><option value="0">Female</option></select></div>
+                    <div class="form-group"><label for="internship">Internship Done?</label><select id="internship" name="internship" required><option value="1">Yes</option><option value="0">No</option></select></div>
+                    <div class="form-group"><label for="training">Training Done?</label><select id="training" name="training" required><option value="1">Yes</option><option value="0">No</option></select></div>
+                    <div class="form-group"><label for="technical">Technical Course?</label><select id="technical" name="technical" required><option value="1">Yes</option><option value="0">No</option></select></div>
+                    <div class="form-group full-width"><button type="submit" class="btn btn-submit">Calculate My Salary</button></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- REAL AI Job Offer Analyzer Section -->
+        <section id="offer-analyzer" class="form-section">
+            <div class="container">
+                <h2>Job Offer Analyzer (with Real AI)</h2>
+                <p class="section-subheading">Upload your offer letter PDF and our AI will read and analyze it for you.</p>
+                
+                <p class="main-instruction">
+                    <strong>Important: If your PDF is a scanned image, please convert it to a text-based PDF using an online OCR tool first for best results.</strong>
+                </p>
+
+                <form action="/analyze_offer" method="post" enctype="multipart/form-data" class="analyzer-form">
+                    
+                    <div class="form-group full-width">
+                        <label for="offer_letter_file" class="upload-box">
+                            <div class="upload-box-content">
+                                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                <span id="upload-text">Drag & Drop your PDF here, or click to browse</span>
+                            </div>
+                            <input type="file" id="offer_letter_file" name="offer_letter_file" class="file-input-hidden" required accept=".pdf">
+                        </label>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn btn-submit">Analyze My Offer with AI</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="container">
+                 <h2>Trusted by Aspiring Freshers</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card"><p>"The AI review was spot on! It read my PDF and gave me the confidence to negotiate."</p><h4>— Anjali S., Software Engineer</h4></div>
+                    <div class="testimonial-card"><p>"Uploading my offer letter was easy, and the analysis was instant and accurate. Highly recommended!"</p><h4>— Rohan M., Data Analyst</h4></div>
+                    <div class="testimonial-card"><p>"A fantastic tool for any fresher. The AI analyzer is a game-changer!"</p><h4>— Priya K., Marketing Associate</h4></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>© Developed by Hamiz Khan</p>
+            <div class="footer-links"><a href="#">About</a><a href="#">Privacy Policy</a><a href="#">Contact</a></div>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript to show the selected file name -->
+    <script>
+        const fileInput = document.getElementById('offer_letter_file');
+        const uploadText = document.getElementById('upload-text');
+        
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                uploadText.textContent = `Selected file: ${fileInput.files[0].name}`;
+            } else {
+                uploadText.textContent = 'Drag & Drop your PDF here, or click to browse';
+            }
+        });
+    </script>
+</body>
+</html>

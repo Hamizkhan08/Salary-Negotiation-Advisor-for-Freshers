@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Result - SalaryPredict AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="nav-logo">SalaryPredict<strong>AI</strong></a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#prediction-form">Predict</a>
+                <a href="/#offer-analyzer">Offer Analyzer</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="result-section">
+            <div class="container">
+                <!-- Case 1: Display Salary Prediction -->
+                {% if salary %}
+                <div class="result-card">
+                    <h3>Predicted Annual Salary</h3>
+                    <p class="salary-value">₹ {{ salary }} LPA</p>
+                    <a href="/" class="btn btn-secondary">Predict Again</a>
+                </div>
+
+                <!-- Case 2: Display Offer Analysis -->
+                {% elif offer_analysis %}
+                <div class="result-card">
+                    <h3>AI Offer Analysis</h3>
+                    <pre class="ai-review">{{ offer_analysis }}</pre>
+                    <a href="/" class="btn btn-secondary">Analyze Another Offer</a>
+                </div>
+
+                <!-- Case 3: Display an Error Message -->
+                {% elif error %}
+                <div class="result-card error-card">
+                    <h3>An Error Occurred</h3>
+                    <p>{{ error }}</p>
+                    <a href="/" class="btn btn-secondary">Try Again</a>
+                </div>
+
+                <!-- Fallback case (should not happen) -->
+                {% else %}
+                 <div class="result-card error-card">
+                    <h3>No Result Found</h3>
+                    <p>Something went wrong. Please return to the home page.</p>
+                    <a href="/" class="btn btn-secondary">Go Home</a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>© Developed by Hamiz Khan</p>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
