@@ -5,7 +5,7 @@ An intelligent web application that predicts a fresher's expected salary based o
 
 ![image](https://github.com/user-attachments/assets/1ac16369-0b32-47d7-89bb-c13c9919533c)
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/65524da3-fa5a-42d6-922e-760e4dd2f8f4)
 
 ## 🧠 Features
 
