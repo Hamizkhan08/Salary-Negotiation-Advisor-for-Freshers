@@ -1,6 +1,11 @@
 # 💼 Salary Negotiation Advisor for Freshers
 
 An intelligent web application that predicts a fresher's expected salary based on academic and personal profile, and analyzes uploaded offer letters to provide AI-generated negotiation advice.
+![image](https://github.com/user-attachments/assets/58a5eac2-16df-4afb-a31a-ecef8416b84f)
+
+![image](https://github.com/user-attachments/assets/1ac16369-0b32-47d7-89bb-c13c9919533c)
+
+![Uploading image.png…]()
 
 ## 🧠 Features
 
